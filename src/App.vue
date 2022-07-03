@@ -42,6 +42,8 @@ html,body{
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-family: Manrope;
+  margin: 0;
+  padding: 0;
 }
 input, button, textarea{font-family: inherit;}
 
