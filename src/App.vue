@@ -1,24 +1,18 @@
 <template>
-  <div>
-    <HeaderMain/>
-    <ContentMain/>
-    <FooterMain/>
-  </div>
+  <router-view/>
+<!--  <HomePage></HomePage>-->
 </template>
 
 <script>
-
-import FooterMain from './components/Footer.vue'
-import HeaderMain from './components/Header.vue'
-import ContentMain from '@/components/ContentMain'
-
+// import HomePage from '@/components/HomePage'
 export default {
-  name: 'App',
-  components: {
-    HeaderMain,
-    FooterMain,
-    ContentMain
-  }
+  name: 'App'
+  // data: function () {
+  //   return { routes: [{ name: 'HomePage', title: 'Войти' }, { name: 'Authorization', title: 'Авторизоваться' }, { name: 'Registration', title: 'Зарегистрироваться' }] }
+  // }
+  // components: {
+  //   HomePage
+  // }
 }
 </script>
 
@@ -60,4 +54,13 @@ h1,h2,h3,h4,h5,h6{font-size: inherit; font-weight: 400;}
   font-family: Manrope;
   src: url("./assets/Fonts/Manrope-VariableFont_wght.ttf");
 }
+
+html{
+  background-color: #121212;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 100%;
+}
+
 </style>

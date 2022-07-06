@@ -1,0 +1,51 @@
+<template>
+  <div class="container">
+    <div class="container__authorization">
+      <div class="authorization__text"></div>
+      <div class="authorization__data"></div>
+      <div class="authorization__buttons">
+        <div @click="change_page('HomePage')" class="button__authorization"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import RouterPage from '@/router/RouterPage'
+
+export default {
+  name: 'RegistrationPage',
+  components: {
+  },
+  data: function () {
+    return {
+    }
+  },
+  methods: {
+    change_page: function (name) {
+      RouterPage.push({ name: name })
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+.container__authorization{
+  height: 500px;
+  width: 300px;
+  background-color: #1C1C1E;
+}
+.button__authorization{
+  height: 100px;
+  width: 200px;
+  background-color: red;
+  color: white;
+  font-size: 30px;
+}
+}
+</style>
