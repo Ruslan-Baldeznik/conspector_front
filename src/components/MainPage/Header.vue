@@ -2,10 +2,10 @@
 <header class="header">
   <div class="header__container">
     <div class="container__navigation">
-      <button @click="change_page('Authorization')" tabindex="0" class="navigation__button">Главная</button>
-      <button @click="change_page('Registration')" tabindex="1" class="navigation__button">Профиль</button>
+      <button @click="change_route('Authorization')" tabindex="0" class="navigation__button">Главная</button>
+      <button @click="change_route('Articles')" tabindex="1" class="navigation__button">Статьи</button>
       <button tabindex="2" class="navigation__button">Конспекты</button>
-      <button tabindex="3" class="navigation__button">Курсы</button>
+      <button tabindex="3" class="navigation__button">Профиль</button>
     </div>
     <div class="container__add-button">
       <div class="add-button__text">Добавить</div>
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div v-bind:class="{'burger': is_burger_active}" class="none">
-    <div @click="change_page('Abstracts')" v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Конспекты</div>
+    <div @click="change_route('Abstracts')" v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Конспекты</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Статьи</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Профиль</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Стаитстика</div>
@@ -44,7 +44,7 @@ export default {
     burger_button_to_cross: function () {
       this.is_burger_active = !this.is_burger_active
     },
-    change_page: function (name) {
+    change_route: function (name) {
       router.push({ name: name })
     }
   }

@@ -3,14 +3,19 @@
     <div class="container__authorization">
       <div class="authorization__text-container">
         <div class="text-container__text">Регистрация</div>
-        <a  @click="change_page('Authorization')" class="text-container__link">Авторизироваться</a>
+        <button  @click="change_page('Authorization')" class="text-container__link">Авторизация</button>
       </div>
       <div class="authorization__data">
-        <input type="text" class="data__user-name">
-        <input type="password" class="data__password">
+        <input placeholder="имя пользователя" type="text" class="data__user-name data__field">
+        <input type="text" placeholder="почта" class="data__email data__field">
+        <input placeholder="пароль" type="password" class="data__password data__field">
       </div>
       <div class="authorization__buttons">
-        <div @click="change_page('HomePage')" class="buttons__authorization">Зарегистрироваться</div>
+        <div class="buttons__rules">
+          <input type="checkbox" class="rules__checkbox">
+          <div class="rules__text">Политика конфиденциальности</div>
+        </div>
+        <button @click="change_page('HomePage')" class="buttons__authorization">Зарегистрироваться</button>
         <div class="buttons__social">
           <div class="social__google"></div>
           <div class="social__yandex"></div>
@@ -43,6 +48,7 @@ export default {
 
 <style scoped lang="scss">
 .container{
+  padding: 30px;
   height: 100%;
   width: 100%;
   display: flex;
@@ -50,14 +56,15 @@ export default {
   justify-content: center;
   background-color: #121212;
 .container__authorization{
-  height: 500px;
-  width: 300px;
+  height: 430px;
+  width: 340px;
   background-color: #1C1C1E;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   .authorization__text-container{
+    width: 280px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,9 +76,17 @@ export default {
       justify-content: center;
     }
     .text-container__link{
+      border: none;
+      color: white;
+      background-color: inherit;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition-duration: 0.3s;
+    }
+    .text-container__link:hover{
+      text-shadow: 0 0 10px white;
     }
   }
   .authorization__data{
@@ -79,14 +94,56 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 280px;
+    .data__field{
+      border: 2px solid gray;
+      border-radius: 13px;
+      background-color: inherit;
+      width: 100%;
+      height: 35px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 10px white;
+      transition-duration: 0.3s;
+    }
+    .data__field:hover{
+      box-shadow: 0 0 15px #45A4B7;
+      border-color: #45A4B7;
+    }
+    :not(:last-child){
+      margin-bottom: 20px;
+    }
   }
   .authorization__buttons {
+    width: 280px;
+    .buttons__rules{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
     .buttons__authorization {
-      height: 100px;
-      width: 200px;
-      background-color: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      width: 100%;
+      background-color: inherit;
+      border-radius: 13px;
+      border: 2px solid #45A4B7;
       color: white;
-      font-size: 30px;
+      font-size: 18px;
+      transition-duration: 0.3s;
+    }
+    .buttons__authorization:hover{
+      box-shadow: 0 0 15px #45A4B7;
+    }
+    .buttons__authorization:active{
+      box-shadow: 0 0 25px #45A4B7;
     }
   }
 }

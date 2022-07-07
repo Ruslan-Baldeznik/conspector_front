@@ -5,10 +5,11 @@ import Abstracts from '@/components/MainPage/Content/Abstracts.vue'
 import HomePage from '@/components/HomePage'
 import Authorization from '@/components/Authorization'
 import Registration from '@/components/Registration'
+import Articles from '@/components/MainPage/Content/Articles'
 
 Vue.use(VueRouter)
 
-const routesPage = [{ name: 'HomePage', component: HomePage, path: '/home_page', children: [{ name: 'Curses', component: Curses, path: 'curses' }, { name: 'Abstracts', component: Abstracts, path: 'abstracts' }] },
+const routesPage = [{ name: 'HomePage', component: HomePage, path: '/home_page', children: [{ name: 'Curses', component: Curses, path: 'curses' }, { name: 'Abstracts', component: Abstracts, path: 'abstracts' }, { name: 'Articles', component: Articles, path: 'articles' }] },
   { name: 'Authorization', component: Authorization, path: '/' },
   { name: 'Registration', component: Registration, path: '/registration' }]
 
