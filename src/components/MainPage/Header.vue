@@ -21,7 +21,7 @@
     </div>
   </div>
   <div v-bind:class="{'burger': is_burger_active}" class="none">
-    <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Конспекты</div>
+    <div @click="change_page('Abstracts')" v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Конспекты</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Статьи</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Профиль</div>
     <div v-bind:class="{'burger__button-opened': is_burger_active}" class="burger__button">Стаитстика</div>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import RouterPage from '@/router/RouterPage'
+import router from '@/router/router'
 
 export default {
   name: 'HeaderMain',
@@ -45,7 +45,7 @@ export default {
       this.is_burger_active = !this.is_burger_active
     },
     change_page: function (name) {
-      RouterPage.push({ name: name })
+      router.push({ name: name })
     }
   }
 }

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import RouterPage from '@/router/RouterPage'
+import router from '@/router/router'
 export default {
   name: 'AuthorizationPage',
   components: {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     change_page: function (name) {
-      RouterPage.push({ name: name })
+      router.push({ name: name })
     }
   }
 }
@@ -30,6 +30,8 @@ export default {
 
 <style scoped lang="scss">
 .container{
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

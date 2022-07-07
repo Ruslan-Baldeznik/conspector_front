@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import routerContent from '@/router/RouterContent.js'
+import router from '@/router/router.js'
 export default {
   name: 'NavigationMain',
   data: function () {
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     change_content: function (name) {
-      routerContent.push({ name: name })
+      router.push({ name: name })
     }
   }
 }
