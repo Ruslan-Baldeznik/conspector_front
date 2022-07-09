@@ -6,16 +6,25 @@
         <button  @click="change_page('Authorization')" class="text-container__link">Авторизация</button>
       </div>
       <div class="authorization__data">
-        <input placeholder="имя пользователя" type="text" class="data__user-name data__field">
-        <input type="text" placeholder="почта" class="data__email data__field">
-        <input placeholder="пароль" type="password" class="data__password data__field">
+        <div class="username__container data__container">
+          <input placeholder="имя пользователя" type="text" class="data__user-name data__field" v-on:change="username_listener">
+          <div class="username-container__text container__text">Введенное вами имя недопустимо</div>
+        </div>
+        <div class="email__container data__container">
+          <input type="email" placeholder="почта" class="data__email data__field" v-on:change="email_listener">
+          <div class="email-container__text container__text">Введенная вами почта недопустима</div>
+        </div>
+        <div class="password__container data__container">
+          <input placeholder="пароль" type="password" class="data__password data__field" v-on:change="password_listener">
+          <div class="password-container__text container__text">Введенный вами пароль недопустим</div>
+        </div>
       </div>
       <div class="authorization__buttons">
         <div class="buttons__rules">
           <input type="checkbox" class="rules__checkbox">
           <div class="rules__text">Политика конфиденциальности</div>
         </div>
-        <button @click="change_page('HomePage')" class="buttons__authorization">Зарегистрироваться</button>
+        <button disabled @click="change_page('HomePage')" class="buttons__authorization">Зарегистрироваться</button>
         <div class="buttons__social">
           <div class="social__google"></div>
           <div class="social__yandex"></div>
@@ -30,17 +39,71 @@
 <script>
 import router from '@/router/router'
 
+// document.querySelector('.buttons__authorization').addEventListener('onclick', function () {
+//   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+//   var email = re.exec(document.querySelector('.data__email').value)
+//   if (!email) {
+//     document.querySelector('.container__text').classList.add('.visible')
+//   } else {
+//     document.querySelector('.container__text').classList.remove('.visible')
+//   }
+// })
 export default {
   name: 'RegistrationPage',
   components: {
   },
   data: function () {
     return {
+      is_username_true: false,
+      is_email_true: false,
+      is_password_true: false
     }
   },
   methods: {
     change_page: function (name) {
       router.push({ name: name })
+    },
+    email_listener: function () {
+      this.is_input_correct()
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      const email = re.exec(document.querySelector('.data__email').value)
+      console.log(email)
+      if (!email) {
+        document.querySelector('.email-container__text').classList.add('visible')
+      } else {
+        this.is_email_true = true
+        document.querySelector('.email-container__text').classList.remove('visible')
+      }
+    },
+    username_listener: function () {
+      this.is_input_correct()
+      const re = /([0-9]|[A-Z]|[a-z]){5,15}/
+      const username = re.exec(document.querySelector('.data__user-name').value)
+      if (!username) {
+        document.querySelector('.username-container__text').classList.add('visible')
+      } else {
+        this.is_username_true = true
+        document.querySelector('.username-container__text').classList.remove('visible')
+      }
+    },
+    password_listener: function () {
+      this.is_input_correct()
+      const re = /([0-9]|[A-Z]|[a-z]){7,20}/
+      const password = re.exec(document.querySelector('.data__password').value)
+      if (!password) {
+        document.querySelector('.password-container__text').classList.add('visible')
+      } else {
+        this.is_password_true = true
+        document.querySelector('.password-container__text').classList.remove('visible')
+      }
+    },
+    is_input_correct: function () {
+      console.log(this.is_password_true && this.is_username_true && this.is_email_true)
+      if (this.is_password_true && this.is_username_true && this.is_email_true) {
+        document.querySelector('.buttons__authorization').removeAttribute('disabled')
+      } else {
+        document.querySelector('.buttons__authorization').setAttribute('disabled', 'disabled')
+      }
     }
   }
 }
@@ -77,7 +140,7 @@ export default {
     }
     .text-container__link{
       border: none;
-      color: white;
+      color: #45A4B7;
       background-color: inherit;
       font-size: 13px;
       display: flex;
@@ -86,7 +149,7 @@ export default {
       transition-duration: 0.3s;
     }
     .text-container__link:hover{
-      text-shadow: 0 0 10px white;
+      text-shadow: 0 0 10px #45A4B7;
     }
   }
   .authorization__data{
@@ -95,6 +158,24 @@ export default {
     justify-content: center;
     flex-direction: column;
     width: 280px;
+    .data__container{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      .container__text{
+        display: none;
+        color: red;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+      }
+      .visible{
+        display: flex;
+      }
+    }
     .data__field{
       border: 2px solid gray;
       border-radius: 13px;
